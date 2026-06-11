@@ -44,7 +44,7 @@ export function AppHeader({
             ⚡
           </div>
           <div>
-            <h1 className="text-lg font-black tracking-tight bg-gradient-to-r from-indigo-500 to-purple-600 bg-clip-text text-transparent">BỆ PHÓNG 2008</h1>
+            <h1 className="text-lg font-black tracking-tight bg-gradient-to-r from-indigo-500 to-purple-600 bg-clip-text text-transparent">Khôn hồn thì đưa thằng nhóc đó đây!!!</h1>
             <p className="text-xs text-slate-400 font-bold uppercase tracking-wider">Cẩm nang Chinh phục Vật lí 12</p>
           </div>
         </div>
