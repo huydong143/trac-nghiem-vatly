@@ -12,15 +12,15 @@ export const formatPhysicsFormula = (text: string | undefined) => {
   let formatted = text;
   
   // Khử các ký hiệu toán học thủ công bằng HTML tag trực quan
-  formatted = formatted.replace(nuclearRegex, (match, p1, p2, p3) => {
+  formatted = formatted.replace(nuclearRegex, (_, p1, p2, p3) => {
     return `<span class="inline-flex flex-col-reverse justify-center align-middle leading-none text-xxs mx-0.5"><sub class="text-left font-sans select-all">${p1}</sub><sup class="text-left font-sans select-all">${p2}</sup></span><span class="italic font-bold">${p3}</span>`;
   });
 
-  formatted = formatted.replace(powerRegex, (match, p1) => {
+  formatted = formatted.replace(powerRegex, (_, p1) => {
     return `<sup>${p1}</sup>`;
   });
 
-  formatted = formatted.replace(subscriptRegex, (match, p1) => {
+  formatted = formatted.replace(subscriptRegex, (_, p1) => {
     const cleanSub = p1.replace(/[{}]/g, '');
     return `<sub>${cleanSub}</sub>`;
   });

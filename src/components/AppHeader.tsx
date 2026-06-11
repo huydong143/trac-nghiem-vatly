@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import type { Dispatch, SetStateAction } from 'react';
 
 type AppHeaderProps = {
@@ -23,8 +24,20 @@ export function AppHeader({
   setFontSize,
   mistakesCount,
 }: AppHeaderProps) {
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+
   return (
-    <header className={`sticky top-0 z-40 backdrop-blur-md border-b transition-colors ${darkMode ? 'bg-slate-900/80 border-slate-700' : 'bg-white/80 border-slate-200'} shadow-sm`}>
+    <>
+      {/* Toggle Button - Luôn hiển thị ở góc trên phải */}
+      <button
+        onClick={() => setIsHeaderVisible(!isHeaderVisible)}
+        className={`fixed top-4 right-4 z-50 p-3 rounded-full transition-all shadow-lg hover:scale-110 ${darkMode ? 'bg-indigo-600 hover:bg-indigo-500' : 'bg-indigo-600 hover:bg-indigo-500'} text-white font-bold text-xl`}
+        title={isHeaderVisible ? "Ẩn Header" : "Hiện Header"}
+      >
+        {isHeaderVisible ? '▼' : '▲'}
+      </button>
+
+      <header className={`sticky top-0 z-40 backdrop-blur-md border-b transition-all duration-300 overflow-hidden ${isHeaderVisible ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'} ${darkMode ? 'bg-slate-900/80 border-slate-700' : 'bg-white/80 border-slate-200'} shadow-sm`}>
       <div className="max-w-6xl mx-auto px-4 py-3 flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-3 cursor-pointer" onClick={() => setCurrentView('home')}>
           <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-extrabold shadow-md shadow-indigo-500/20">
@@ -37,6 +50,7 @@ export function AppHeader({
         </div>
 
         <div className="flex flex-wrap items-center gap-3">
+
           <div className="flex items-center gap-1.5 bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded-xl border border-slate-200 dark:border-slate-700 text-xs font-bold">
             <span className="text-slate-400 mr-1 text-xxs uppercase tracking-wider">Kiểu chữ:</span>
             <button 
@@ -123,5 +137,6 @@ export function AppHeader({
         </div>
       </div>
     </header>
+    </>
   );
 }
